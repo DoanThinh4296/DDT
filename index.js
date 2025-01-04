@@ -8,9 +8,9 @@
 
 // ***** Tạo mảng:
 let item = [
-  { id: "001", name: "Item 1", quantity: "50", price: "100", quality: true },
-  { id: "002", name: "Item 1", quantity: "100", price: "200", quality: true },
-  { id: "003", name: "Item 1", quantity: "150", price: "300", quality: true },
+  { id: "001", name: "Item 1", quantity: 10, price: 100, quality: true },
+  { id: "002", name: "Item 2", quantity: 20, price: 100, quality: true },
+  { id: "003", name: "Item 3", quantity: 30, price: 100, quality: true },
 ];
 
 // ***** Tạo menu hiển thị
@@ -26,7 +26,6 @@ let menu =
   "Mời bạn nhập chức năng :";
 
 // *****Function Show list
-
 function showListItem() {
   let itemText = "";
   for (let i = 0; i < item.length; i++) {
@@ -46,7 +45,7 @@ function addNewItem() {
   let name = prompt("Nhập tên Item:");
   let quantity = prompt("Nhập số lượng Item:");
   let price = prompt("Nhập giá Item:");
-  let quality = confirm("Chất lượng Item: true(Tốt) hoặc false(Không tốt)");
+  let quality = confirm("Chất lượng Item:");
 
   // tạo 1 đối tượng mới
   let newItem = { id, name, quantity, price, quality };
@@ -73,7 +72,7 @@ function editItem() {
       );
       item[i].price = prompt("Nhập giá mới của Item:", item[i].price);
       item[i].quality = confirm("Chất lượng mới của Item:", item[i].quality);
-      chekc = true;
+      check = true;
       break;
     }
   }
@@ -110,22 +109,23 @@ function deleteItem() {
 function cancelItem() {}
 
 // *****function sumQuatity
-function sumQuatity() {
-  let itemQuatity = 0;
+function sumQuantity() {
+  let itemQuantity = 0;
   for (let i = 0; i < item.length; i++) {
-    itemQuatity += item[i].quality;
+    itemQuantity += item[i].quantity;
   }
-
-  alert(itemQuatity);
+  alert(itemQuantity);
 }
 
 // *****Function sumPrice
-function sumPrice() {
-  let itemPrice = 0;
-  for (let i = 0; i < items.length; i++) {
-    itemPrice += items[i].price;
+function sumItem() {
+  let itemQuantity = 0;
+  let itemCost = 0;
+  for (let i = 0; i < item.length; i++) {
+    itemQuantity += item[i].quantity;
+    itemCost += item[i].quantity * item[i].price;
   }
-  alert(itemPrice);
+  alert(`-Tổng tiền: ${itemCost}\n-Tổng số lượng: ${itemQuantity}`);
 }
 // *****Function sum()
 
@@ -180,13 +180,12 @@ while (true) {
       deleteItem();
       break;
     case 5:
-      sumQuatity();
+      sumItem();
       break;
     case 6:
-        findItem();
-        
+      findItem();
     case 7:
-        break;
+      break;
     default:
       alert("Mời nhập lựa chọn");
   }
